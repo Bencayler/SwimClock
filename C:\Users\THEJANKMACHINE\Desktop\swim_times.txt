@@ -1,0 +1,10 @@
+Lap Number | Lap Times
+-----------------------
+    1	0:00:02.420590
+    2	0:00:01.211205
+    3	0:00:01.155865
+    4	0:00:00.872944
+    5	0:00:00.793175
+Total time: 0:00:06.453779
+Average Split: 0:00:01.290756
+The change in time between the fastest and slowest lap is: 0:00:01.627415

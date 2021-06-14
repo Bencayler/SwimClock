@@ -1,7 +1,7 @@
 import time
 import datetime
+import threading
 
-'''
 class SwimClock2:
     def __init__(self, lap_number, lap_time):
         self.__lap_time = lap_time
@@ -18,7 +18,6 @@ class SwimClock2:
 
     def get_lap_number(self):
         return self.__lap_number
-'''
 
 
 def main():
@@ -112,10 +111,12 @@ def interval_mode():
                                       'rate in seconds: '))
     input('Press enter to begin')
     while current_lap < desired_interval_number:
-        today = datetime.datetime.today()
-        input('Hit enter to log a split: ')
-        future = datetime.datetime.today()
-        split = future - today
+        for i in range(desired_interval_rate, 10, -1):
+            time.sleep(1)
+        for i in range(10, 0, -1):
+            time.sleep(1)
+            print(i)
+        print('GO!')
         current_lap += 1
 
 
@@ -134,10 +135,10 @@ def rest_interval_mode():
         split = future - today
         current_lap += 1
         print(f'{current_lap} | {split}')
-        for i in range(desired_rest_rate, 0, -1):
-            time.sleep(1)
-            print(i)
-        if current_lap < (desired_lap_number - 1):
+        if current_lap < (desired_lap_number):
+            for i in range(desired_rest_rate, 0, -1):
+                time.sleep(1)
+                print(i)
             print('Go')
 
         interior_splits = [current_lap, split]
@@ -195,7 +196,7 @@ def display_chronological(stored_splits):
     print('Lap Number | Lap Times')
     print('-----------------------')
     for r in range(len(stored_splits)):
-        print(f'\t{stored_splits[r][0]}\t\t{(str(stored_splits[r][1]))}')
+        print(f'\t{stored_splits[r][0]}\t{(str(stored_splits[r][1]))}')
     print(f'\nTotal time: {total}')
     print(f'Average Split: {average}')
     stored_splitsV2 = sorted(stored_splits, key=lambda x: x[1])
@@ -215,7 +216,7 @@ def display_fastest_slowest(stored_splits):
     print('-----------------------')
     for r in range(len(stored_splits)):
         total += stored_splits[r][1]
-        print(f'\t{stored_splits[r][0]}\t\t{(str(stored_splits[r][1]))}')
+        print(f'\t{stored_splits[r][0]}\t{(str(stored_splits[r][1]))}')
     average = total / len(stored_splits)
     print(f'\nTotal time: {total}')
     print(f'Average Split: {average}')
@@ -232,7 +233,7 @@ def display_slowest_fastest(stored_splits):
     print('-----------------------')
     for r in range(len(stored_splits)):
         total += stored_splits[r][1]
-        print(f'\t{stored_splits[r][0]}\t\t{(str(stored_splits[r][1]))}')
+        print(f'\t{stored_splits[r][0]}\t{(str(stored_splits[r][1]))}')
     average = total / len(stored_splits)
     print(f'\nTotal time: {total}')
     print(f'Average Split: {average}')
